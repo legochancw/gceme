@@ -8,7 +8,7 @@ pipeline {
     }
     stages {
         stage('Deploy to GKE') {
-            // steps{
+             steps{
             //     step([
             //     $class: 'KubernetesEngineBuilder',
             //     projectId: env.PROJECT_ID,
@@ -17,8 +17,10 @@ pipeline {
             //     manifestPattern: 'manifest.yaml',
             //     credentialsId: env.CREDENTIALS_ID,
             //     verifyDeployments: true])
-            // }
+            
             echo "Test"
+            }
+            
         }
     }
 }
