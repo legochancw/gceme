@@ -3,7 +3,7 @@ pipeline {
     environment {
         PROJECT_ID = 'mobility-320606'
         CLUSTER_NAME = 'cluster-1'
-        LOCATION = 'asia-east2-a''
+        LOCATION = 'asia-east2-a'
         CREDENTIALS_ID = 'mobility-320606'
     }
     stages {
