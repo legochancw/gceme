@@ -4,7 +4,7 @@ pipeline {
     PROJECT = "mobility-320606"
     APP_NAME = "gceme"
     FE_SVC_NAME = "${APP_NAME}-frontend"
-    CLUSTER = "jenkins-cluster"
+    CLUSTER = "cluster-1"
     CLUSTER_ZONE = "asia-east2-a"
     IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     JENKINS_CRED = "${PROJECT}"
