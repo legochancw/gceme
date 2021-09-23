@@ -39,6 +39,17 @@ pipeline {
         CREDENTIALS_ID = 'mobility-320606'
     }
     stages {
+         stage('Test') {
+            steps {
+                container('golang') {
+                sh """
+                    ln -s `pwd` /go/src/sample-app
+                    cd /go/src/sample-app
+                    go test
+                """
+                }
+            }
+            }
         stage('Deploy to GKE') {
              steps{
                 step([
