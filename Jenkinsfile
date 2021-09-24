@@ -45,7 +45,7 @@ spec:
         stage('Checkout') {
             steps {
                 // Clone repository
-                git 'https://github.com/cgn170/sample-go-http-app'
+                //git 'https://github.com/cgn170/sample-go-http-app'
             }
         }
 
@@ -55,6 +55,13 @@ spec:
                     // Get dependencies
                     sh "go get github.com/gorilla/mux"
                     sh "go mod init"
+
+
+                     sh """
+                            ln -s `pwd` /go/src/sample-app
+                            cd /go/src/sample-app
+                            go test
+                        """
                     // Build Golang project    
                     sh "go build -o sample ."
                 }
