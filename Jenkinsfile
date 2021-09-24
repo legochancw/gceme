@@ -28,11 +28,14 @@ agent {
             steps {
                 // Clone repository
                 //git 'https://github.com/cgn170/sample-go-http-app'
-                sh """
-                    ln -s `pwd` /go/src/sample-app
-                    cd /go/src/sample-app
-                    go test
-                """
+               
+                container(name:'golang') {
+                    sh """
+                        ln -s `pwd` /go/src/sample-app
+                        cd /go/src/sample-app
+                        go test
+                    """
+                }
             }
         }
 
