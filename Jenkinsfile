@@ -32,6 +32,11 @@ spec:
     command:
     - /busybox/cat
     tty: true
+  - name: gcloud
+    image: gcr.io/cloud-builders/gcloud
+    command:
+    - cat
+    tty: true
   - name: kubectl
     image: gcr.io/cloud-builders/kubectl
     command:
@@ -65,11 +70,15 @@ spec:
                         """
                     // Build Golang project    
                     sh "go build -o sample ."
+                    
+                }
+                container('gcloud') {
+                    sh "PYTHONUNBUFFERED=1 gcloud builds submit -t ${IMAGE_TAG} ."
                 }
             }
         }
 
-        stage('Build Image Kaniko') {
+        stage('Build Image and Push to Repository') {
             steps {
                 container(name:'kaniko') {
                     
