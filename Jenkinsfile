@@ -1,4 +1,13 @@
 pipeline {
+environment {
+    PROJECT = "mobility-320606"
+    APP_NAME = "gceme"
+    FE_SVC_NAME = "${APP_NAME}-frontend"
+    CLUSTER = "app-cluster"
+    CLUSTER_ZONE = "asia-east2-a"
+    IMAGE_TAG = "gcr.io/${PROJECT}/${APP_NAME}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+    JENKINS_CRED = "${PROJECT}"
+ }
 agent {
         kubernetes {
             label 'jenkins-agent'
@@ -55,6 +64,10 @@ spec:
         stage('Build Image Kaniko') {
             steps {
                 container(name:'kaniko') {
+                    echo ''' 
+                    $WORKSPACE \ $REGISTRY/$REPOSITORY/$IMAGE
+                    '''
+
                     // Build image without push to repository
                     sh '''executor \
                           --no-push \
@@ -62,7 +75,7 @@ spec:
                           --dockerfile $WORKSPACE/Dockerfile 
                     '''
 
-                    /*
+                    
                     Build and push image to repository
                     
                     sh '''executor \
@@ -70,6 +83,7 @@ spec:
                           --dockerfile $WORKSPACE/Dockerfile \
                           --destination $REGISTRY/$REPOSITORY/$IMAGE
                     '''
+                    /*
                     Authentication is required to push an image to Google Container Registry,
                     find further documentation in Kaniko repository:
                     https://github.com/GoogleContainerTools/kaniko#pushing-to-google-gcr 
