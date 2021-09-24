@@ -87,9 +87,9 @@ spec:
 
 
                   
-//   args: ["--dockerfile=<path to Dockerfile within the build context>",
-//          "--context=dir://<path to build context>",
-//          "--destination=<gcr.io/$PROJECT/$IMAGE:$TAG>"]
+                        //   args: ["--dockerfile=<path to Dockerfile within the build context>",
+                        //          "--context=dir://<path to build context>",
+                        //          "--destination=<gcr.io/$PROJECT/$IMAGE:$TAG>"]
 
                     /*
                     Authentication is required to push an image to Google Container Registry,
