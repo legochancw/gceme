@@ -45,6 +45,7 @@ spec:
                 container(name:'golang') {
                     // Get dependencies
                     sh "go get github.com/gorilla/mux"
+                    sh "go mod init"
                     // Build Golang project    
                     sh "go build -o sample ."
                 }
