@@ -69,14 +69,14 @@ spec:
                     '''
 
                     // Build image without push to repository
-                    sh '''executor \
-                          --no-push \
-                          --context $WORKSPACE \
-                          --dockerfile $WORKSPACE/Dockerfile 
-                    '''
+                    // sh '''executor \
+                    //       --no-push \
+                    //       --context $WORKSPACE \
+                    //       --dockerfile $WORKSPACE/Dockerfile 
+                    // '''
 
                     
-                    Build and push image to repository
+                    //Build and push image to repository
                     
                     sh '''executor \
                           --context $WORKSPACE \
