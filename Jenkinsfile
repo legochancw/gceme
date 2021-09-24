@@ -2,14 +2,18 @@ pipeline {
 agent {
         kubernetes {
             label 'jenkins-agent'
+            defaultContainer 'jnlp'
             yaml """
+apiVersion: v1
 kind: Pod
 metadata:
   name: jenkins-agent
+labels:
+        component: ci
 spec:
   containers:
   - name: golang
-    image: golang:1.12
+    image: golang:1.17
     command:
     - cat
     tty: true
@@ -18,6 +22,11 @@ spec:
     imagePullPolicy: Always
     command:
     - /busybox/cat
+    tty: true
+  - name: kubectl
+    image: gcr.io/cloud-builders/kubectl
+    command:
+    - cat
     tty: true
 """
         }
