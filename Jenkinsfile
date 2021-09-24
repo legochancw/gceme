@@ -72,18 +72,13 @@ spec:
         stage('Build Image Kaniko') {
             steps {
                 container(name:'kaniko') {
-                    echo '''
-                    $WORKSPACE/$REGISTRY/$REPOSITORY/$IMAGE
-                    ${IMAGE_TAG}
-                    '''
-
+                    
                     // Build image without push to repository
                     // sh '''executor \
                     //       --no-push \
                     //       --context $WORKSPACE \
                     //       --dockerfile $WORKSPACE/Dockerfile 
                     // '''
-
                     
                     //Build and push image to repository
                     
