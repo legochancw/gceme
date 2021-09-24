@@ -65,7 +65,8 @@ spec:
             steps {
                 container(name:'kaniko') {
                     echo ''' 
-                    $WORKSPACE \ $REGISTRY/$REPOSITORY/$IMAGE
+                    $WORKSPACE \
+                     $REGISTRY/$REPOSITORY/$IMAGE
                     '''
 
                     // Build image without push to repository
