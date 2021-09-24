@@ -13,7 +13,7 @@ labels:
 spec:
   containers:
   - name: golang
-    image: golang:1.17
+    image: golang:1.12
     command:
     - cat
     tty: true
