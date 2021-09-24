@@ -82,10 +82,16 @@ spec:
                     
                     //Build and push image to repository
                     
+                    //sh '''executor \
+                    //      --context $WORKSPACE \
+                    //      --dockerfile $WORKSPACE/Dockerfile \
+                    //      --destination $REGISTRY/$REPOSITORY/$IMAGE
+                    //'''
+
                     sh '''executor \
-                          --context $WORKSPACE \
-                          --dockerfile $WORKSPACE/Dockerfile \
-                          --destination $REGISTRY/$REPOSITORY/$IMAGE
+                         --context $WORKSPACE \
+                         --dockerfile $WORKSPACE/Dockerfile \
+                         --destination <gcr.io/mobility-320606/APP_NAME:${env.BRANCH_NAME}>
                     '''
 
 
