@@ -3,41 +3,33 @@ agent {
         kubernetes {
             label 'jenkins-agent'
             yaml """
-                kind: Pod
-                metadata:
-                name: jenkins-agent
-                spec:
-                containers:
-                - name: golang
-                    image: golang:1.12
-                    command:
-                    - cat
-                    tty: true
-                - name: kaniko
-                    image: gcr.io/kaniko-project/executor:debug
-                    imagePullPolicy: Always
-                    command:
-                    - /busybox/cat
-                    tty: true
-                """
+kind: Pod
+metadata:
+  name: jenkins-agent
+spec:
+  containers:
+  - name: golang
+    image: golang:1.12
+    command:
+    - cat
+    tty: true
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    imagePullPolicy: Always
+    command:
+    - /busybox/cat
+    tty: true
+"""
         }
     }
 
     stages {
-        // stage('Checkout - Go testing') {
-        //     steps {
-        //         // Clone repository
-        //         //git 'https://github.com/cgn170/sample-go-http-app'
-               
-        //         container(name:'golang') {
-        //             sh """
-        //                 ln -s `pwd` /go/src/sample-app
-        //                 cd /go/src/sample-app
-        //                 go test
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Checkout') {
+            steps {
+                // Clone repository
+                git 'https://github.com/cgn170/sample-go-http-app'
+            }
+        }
 
         stage('Build Golang'){
             steps {
