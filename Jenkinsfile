@@ -44,6 +44,7 @@ spec:
     stages {
         stage('Checkout') {
             steps {
+                echo 'skip git checkout'
                 // Clone repository
                 //git 'https://github.com/cgn170/sample-go-http-app'
             }
