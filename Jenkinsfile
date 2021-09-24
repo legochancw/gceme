@@ -24,20 +24,20 @@ agent {
     }
 
     stages {
-        stage('Checkout - Go testing') {
-            steps {
-                // Clone repository
-                //git 'https://github.com/cgn170/sample-go-http-app'
+        // stage('Checkout - Go testing') {
+        //     steps {
+        //         // Clone repository
+        //         //git 'https://github.com/cgn170/sample-go-http-app'
                
-                container(name:'golang') {
-                    sh """
-                        ln -s `pwd` /go/src/sample-app
-                        cd /go/src/sample-app
-                        go test
-                    """
-                }
-            }
-        }
+        //         container(name:'golang') {
+        //             sh """
+        //                 ln -s `pwd` /go/src/sample-app
+        //                 cd /go/src/sample-app
+        //                 go test
+        //             """
+        //         }
+        //     }
+        // }
 
         stage('Build Golang'){
             steps {
