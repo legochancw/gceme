@@ -27,7 +27,7 @@ spec:
     - cat
     tty: true
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug
+    image: gcr.io/kaniko-project/executor:latest
     imagePullPolicy: Always
     command:
     - /busybox/cat
@@ -66,6 +66,7 @@ spec:
                 container(name:'kaniko') {
                     echo '''
                     $WORKSPACE/$REGISTRY/$REPOSITORY/$IMAGE
+                    ${IMAGE_TAG}
                     '''
 
                     // Build image without push to repository
@@ -83,6 +84,13 @@ spec:
                           --dockerfile $WORKSPACE/Dockerfile \
                           --destination $REGISTRY/$REPOSITORY/$IMAGE
                     '''
+
+
+                  
+  args: ["--dockerfile=<path to Dockerfile within the build context>",
+         "--context=dir://<path to build context>",
+         "--destination=<gcr.io/$PROJECT/$IMAGE:$TAG>"]
+
                     /*
                     Authentication is required to push an image to Google Container Registry,
                     find further documentation in Kaniko repository:
